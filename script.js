@@ -24,7 +24,7 @@ class InfiniteCarousel {
         this.startX = 0;
         this.currentX = 0;
         this.offset = 0;
-        this.itemWidth = 280 + 30; // width + gap
+        this.itemWidth = 180 + 30; // width + gap
         this.animationId = null;
         this.velocity = 0;
         this.lastX = 0;
@@ -60,11 +60,13 @@ class InfiniteCarousel {
     
     handleStart(e) {
         this.isDragging = true;
-        this.startX = this.getEventX(e);
-        this.currentX = this.startX;
-        this.lastX = this.startX;
+        const eventX = this.getEventX(e);
+        this.startX = eventX;
+        this.currentX = eventX;
+        this.lastX = eventX;
         this.lastTime = Date.now();
         this.velocity = 0;
+        this.initialOffset = this.offset; // Guardar offset inicial
         
         // Cancelar auto-scroll
         this.stopAutoScroll();
@@ -77,20 +79,20 @@ class InfiniteCarousel {
         if (!this.isDragging) return;
         
         this.currentX = this.getEventX(e);
-        const deltaX = this.currentX - this.startX;
         const currentTime = Date.now();
         const timeDelta = currentTime - this.lastTime;
         
-        // Calcular velocidad para momentum scrolling
+        // Calcular velocidad para momentum scrolling (reducida)
         if (timeDelta > 0) {
-            this.velocity = (this.currentX - this.lastX) / timeDelta;
+            this.velocity = (this.currentX - this.lastX) / timeDelta * 0.3; // Reducir sensibilidad
         }
         
         this.lastX = this.currentX;
         this.lastTime = currentTime;
         
-        // Aplicar transformación
-        const newOffset = this.offset + deltaX;
+        // Aplicar transformación desde el offset inicial
+        const deltaX = this.currentX - this.startX;
+        const newOffset = this.initialOffset + deltaX;
         this.setTransform(newOffset);
         
         e.preventDefault();
@@ -101,6 +103,9 @@ class InfiniteCarousel {
         
         this.isDragging = false;
         
+        // Verificar límites antes de aplicar momentum
+        this.checkBounds();
+        
         // Aplicar momentum scrolling
         this.applyMomentum();
         
@@ -109,8 +114,14 @@ class InfiniteCarousel {
     }
     
     applyMomentum() {
-        const friction = 0.95;
-        const minVelocity = 0.1;
+        const friction = 0.92;
+        const minVelocity = 0.05;
+        const maxVelocity = 2.0; // Limitar velocidad máxima
+        
+        // Limitar la velocidad inicial
+        if (Math.abs(this.velocity) > maxVelocity) {
+            this.velocity = this.velocity > 0 ? maxVelocity : -maxVelocity;
+        }
         
         const animate = () => {
             if (Math.abs(this.velocity) < minVelocity) {
@@ -119,7 +130,8 @@ class InfiniteCarousel {
                 return;
             }
             
-            this.offset += this.velocity * 10;
+            // Reducir el multiplicador de velocidad para hacerlo más suave
+            this.offset += this.velocity * 5;
             this.velocity *= friction;
             
             this.setTransform(this.offset);
@@ -131,15 +143,16 @@ class InfiniteCarousel {
     }
     
     snapToNearest() {
-        const itemCount = this.items.length / 2; // Dividir por 2 porque están duplicados
+        const itemCount = this.items.length / 2; // 5 items originales
         const snapOffset = Math.round(this.offset / this.itemWidth) * this.itemWidth;
         
         // Asegurar que estamos en el rango correcto
         let finalOffset = snapOffset;
-        const maxOffset = -(itemCount - 1) * this.itemWidth;
+        const maxOffset = -(itemCount - 1) * this.itemWidth; // -4 * 210 = -840px
         
+        // Si estamos fuera de los límites, ajustar al rango válido
         if (finalOffset > 0) {
-            finalOffset = -itemCount * this.itemWidth;
+            finalOffset = maxOffset;
         } else if (finalOffset < maxOffset) {
             finalOffset = 0;
         }
@@ -182,25 +195,34 @@ class InfiniteCarousel {
     }
     
     checkBounds() {
-        const itemCount = this.items.length / 2;
-        const maxOffset = -(itemCount - 1) * this.itemWidth;
-        const minOffset = -itemCount * this.itemWidth;
+        const itemCount = this.items.length / 2; // 5 items originales
+        const maxOffset = -(itemCount - 1) * this.itemWidth; // -4 * 210 = -840px (último item original)
+        const minOffset = -itemCount * this.itemWidth; // -5 * 210 = -1050px (inicio de duplicados)
         
-        // Si estamos fuera de los límites, saltar al otro lado (scroll infinito)
-        if (this.offset > 0) {
-            this.offset = maxOffset;
-            this.track.style.transition = 'none';
-            this.track.style.transform = `translateX(${this.offset}px)`;
-            setTimeout(() => {
-                this.track.style.transition = '';
-            }, 50);
-        } else if (this.offset < minOffset) {
-            this.offset = 0;
-            this.track.style.transition = 'none';
-            this.track.style.transform = `translateX(${this.offset}px)`;
-            setTimeout(() => {
-                this.track.style.transition = '';
-            }, 50);
+        // Scroll infinito: cuando pasamos el último item original, saltamos al inicio sin transición
+        // Solo hacer el salto cuando no estamos arrastrando para evitar saltos visibles
+        if (!this.isDragging) {
+            if (this.offset > 0) {
+                // Si vamos hacia la derecha más allá del inicio, saltamos al final
+                this.offset = maxOffset;
+                this.track.style.transition = 'none';
+                this.track.style.transform = `translateX(${this.offset}px)`;
+                // Forzar reflow para que el navegador aplique el cambio
+                void this.track.offsetHeight;
+                setTimeout(() => {
+                    this.track.style.transition = '';
+                }, 0);
+            } else if (this.offset <= minOffset) {
+                // Si vamos hacia la izquierda más allá del final, saltamos al inicio
+                this.offset = 0;
+                this.track.style.transition = 'none';
+                this.track.style.transform = `translateX(${this.offset}px)`;
+                // Forzar reflow para que el navegador aplique el cambio
+                void this.track.offsetHeight;
+                setTimeout(() => {
+                    this.track.style.transition = '';
+                }, 0);
+            }
         }
     }
     
@@ -244,6 +266,21 @@ class InfiniteCarousel {
             }
         }
     }
+    
+    navigate(direction) {
+        const itemCount = this.items.length / 2;
+        const currentItem = Math.round(-this.offset / this.itemWidth);
+        
+        if (direction === 'left') {
+            // Mover hacia la izquierda (siguiente item)
+            const targetOffset = -(currentItem + 1) * this.itemWidth;
+            this.animateTo(targetOffset);
+        } else if (direction === 'right') {
+            // Mover hacia la derecha (item anterior)
+            const targetOffset = -(currentItem - 1) * this.itemWidth;
+            this.animateTo(targetOffset);
+        }
+    }
 }
 
 // Inicializar cuando el DOM esté listo
@@ -252,8 +289,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const carouselContainer = document.querySelector('.carousel-container');
     const carouselTrack = document.getElementById('carouselTrack');
     
+    let carouselInstance = null;
     if (carouselContainer && carouselTrack) {
-        new InfiniteCarousel(carouselContainer, carouselTrack);
+        carouselInstance = new InfiniteCarousel(carouselContainer, carouselTrack);
+    }
+    
+    // Botones de navegación del carrusel
+    const carouselLeft = document.getElementById('carouselLeft');
+    const carouselRight = document.getElementById('carouselRight');
+    
+    if (carouselLeft && carouselInstance) {
+        carouselLeft.addEventListener('click', () => {
+            carouselInstance.navigate('left');
+        });
+    }
+    
+    if (carouselRight && carouselInstance) {
+        carouselRight.addEventListener('click', () => {
+            carouselInstance.navigate('right');
+        });
     }
     
     // Botón de pulsera
