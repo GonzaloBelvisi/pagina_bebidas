@@ -4,174 +4,80 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>SUNSHINE. TANQUERAY TIME</title>
+    <title>Sunshine. Tanqueray Time</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <!-- Header -->
-        <header class="header">
-            <h1 class="title">SUNSHINE. TANQUERAY TIME</h1>
-            <div class="logo-subtitle">LONDON ENGLAND</div>
-        </header>
-
-        <!-- Carrusel Principal -->
+    <!-- Artboard 1 - Página Principal -->
+    <section id="artboard1" class="artboard active">
+        <img src="ArboarYRecursos/Artboard 1.png" alt="Artboard 1" class="artboard-bg">
+        
+        <!-- Carrusel de recursos interactivos -->
         <div class="carousel-container">
-            <div class="carousel-wrapper">
-                <div class="carousel-slide active">
-                    <!-- Slide 1: Main Hero -->
-                    <div class="slide-content slide-hero">
-                        <div class="hero-image-section">
-                            <img src="Base Grafica App Espacio Tanqueray AIPDE_Folder/Links/4919186_TANQUERAY_TLD LIME WEDGE AND WHEEL_V2.png" 
-                                 alt="Tanqueray Lime" class="hero-image" onerror="this.style.display='none'">
-                            <div class="hero-overlay">
-                                <p class="hero-text">LLEVA TANQUERAY Y DISFRUTA PUNTA DEL ESTE DE FORMA ÚNICA</p>
-                                <div class="tanqueray-seal"></div>
-                            </div>
-                        </div>
-                        <div class="products-grid">
-                            <div class="product-card">
-                                <div class="product-bottle no-ten"></div>
-                                <h3>TANQUERAY® NO. TEN & TONIC</h3>
-                                <div class="prices">
-                                    <span>x1 47.00</span>
-                                    <span>x2 80.00</span>
-                                    <span>x4 141.00</span>
-                                </div>
-                            </div>
-                            <div class="product-card">
-                                <div class="product-bottle london-dry"></div>
-                                <h3>TANQUERAY® LONDON DRY GIN & TONIC</h3>
-                                <div class="prices">
-                                    <span>x1 19.00</span>
-                                    <span>x2 32.00</span>
-                                    <span>x4 57.00</span>
-                                </div>
-                            </div>
-                            <div class="product-card">
-                                <div class="product-bottle sevilla"></div>
-                                <h3>TANQUERAY® SEVILLA & TONIC</h3>
-                                <div class="prices">
-                                    <span>x1 21.00</span>
-                                    <span>x2 36.00</span>
-                                    <span>x4 63.00</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bracelet-info">
-                            <p>COMPRANDO TANQUERAY Y TE LLEVAS UNA PULSERA PARA CANJEAR TRAGOS Y PREMIOS EN DISTINTOS RESTAURANTES, BARES Y TIENDAS DE PUNTA DEL ESTE</p>
-                            <div class="cta-bar">¿DÓNDE CANJEAR TU PULSERA?</div>
-                        </div>
-                    </div>
+            <div class="carousel-track" id="carouselTrack">
+                <div class="carousel-item" data-target="artboard-copy-6">
+                    <img src="ArboarYRecursos/Recurso 2.png" alt="Recurso 2">
                 </div>
-
-                <div class="carousel-slide">
-                    <!-- Slide 2: Tanqueray No. Ten -->
-                    <div class="slide-content slide-product">
-                        <h2 class="product-title">TANQUERAY® NO. TEN & TONIC</h2>
-                        <p class="product-subtitle">EL PRIMER GIN ULTRA PREMIUM</p>
-                        <div class="product-image-container">
-                            <img src="Base Grafica App Espacio Tanqueray AIPDE_Folder/Links/TANQUERAY_T10 TONIC_GRAPEFRUIT COPA_v2_RT_V2.png" 
-                                 alt="Tanqueray No. Ten" class="product-image">
-                        </div>
-                        <div class="product-description">
-                            <p class="description-title">SABOR EXCEPCIONAL, ELABORADO DE FORMA EXQUISITA.</p>
-                            <p class="description-text">
-                                Distilado con pomelo fresco, flor de camomila y raíz de angélica. 
-                                Aroma intenso y cítrico con notas de pomelo y junípero. 
-                                Personalidad refinada y compleja.
-                            </p>
-                        </div>
-                        <div class="product-logo"></div>
-                        <div class="product-prices">
-                            <span>x1 47.00</span>
-                            <span>x2 80.00</span>
-                            <span>x4 141.00</span>
-                        </div>
-                    </div>
+                <div class="carousel-item" data-target="artboard-copy-4">
+                    <img src="ArboarYRecursos/Recurso 3.png" alt="Recurso 3">
                 </div>
-
-                <div class="carousel-slide">
-                    <!-- Slide 3: Tanqueray London Dry Gin -->
-                    <div class="slide-content slide-product">
-                        <h2 class="product-title">TANQUERAY® LONDON DRY GIN & TONIC</h2>
-                        <p class="product-subtitle">EL EQUILIBRIO PERFECTO ENTRE 4 INGREDIENTES BOTÁNICOS</p>
-                        <div class="product-image-container">
-                            <img src="Base Grafica App Espacio Tanqueray AIPDE_Folder/Links/4919186_TANQUERAY_TLD LIME WEDGE AND WHEEL_V2.png" 
-                                 alt="Tanqueray London Dry Gin" class="product-image">
-                        </div>
-                        <div class="product-description">
-                            <p class="description-title">LA GINEBRA NÚMERO UNO DEL MUNDO Y LA FAVORITA DE LOS BARTENDERS PARA UN T&T PERFECTO.</p>
-                            <p class="description-text">
-                                Con más de 180 años de historia. Aroma equilibrado con notas de junípero. 
-                                Personalidad clásica y distintiva.
-                            </p>
-                        </div>
-                        <div class="product-logo"></div>
-                        <div class="product-prices">
-                            <span>x1 19.00</span>
-                            <span>x2 32.00</span>
-                            <span>x4 57.00</span>
-                        </div>
-                    </div>
+                <div class="carousel-item" data-target="artboard-copy">
+                    <img src="ArboarYRecursos/Recurso 6.png" alt="Recurso 6">
                 </div>
-
-                <div class="carousel-slide">
-                    <!-- Slide 4: Premios y Socios -->
-                    <div class="slide-content slide-partners">
-                        <div class="partners-intro">
-                            <p>PRESENTÁ TU PULSERA EN LOS SIGUIENTES RESTAURANTES, BARES Y TIENDAS PARA CANJEAR TRAGOS Y PREMIOS</p>
-                        </div>
-                        <div class="prizes-section">
-                            <h3>CANJEA PREMIOS ROTUNDA</h3>
-                            <div class="prizes-grid">
-                                <div class="prize-item">
-                                    <img src="Base Grafica App Espacio Tanqueray AIPDE_Folder/Links/paleta rotupale_green.jpg" alt="Bolso">
-                                </div>
-                                <div class="prize-item">
-                                    <img src="Base Grafica App Espacio Tanqueray AIPDE_Folder/Links/gorro-roden_light-blue.jpg" alt="Gorro">
-                                </div>
-                                <div class="prize-item">
-                                    <img src="Base Grafica App Espacio Tanqueray AIPDE_Folder/Links/diva-print-5-3.jpg" alt="Abanico">
-                                </div>
-                            </div>
-                            <div class="offer-badge">CANJEA 2X1 EN TRAGOS TANQUERAY</div>
-                        </div>
-                        <div class="partners-grid">
-                            <div class="partner-logo">enjoy</div>
-                            <div class="partner-logo">Las Brisas</div>
-                            <div class="partner-logo">PROVENCE</div>
-                            <div class="partner-logo">BLEND</div>
-                            <div class="partner-logo">BLEND TERRAZAS</div>
-                            <div class="partner-logo">MIABISTRO</div>
-                            <div class="partner-logo">THE GRAND HOTEL</div>
-                            <div class="partner-logo">I'marangatu</div>
-                            <div class="partner-logo">chill out</div>
-                            <div class="partner-logo">chill out LA BARRA</div>
-                            <div class="partner-logo">El Chiringuito</div>
-                            <div class="partner-logo">MERRY JACK</div>
-                            <div class="partner-logo">ZAZU</div>
-                            <div class="partner-logo">SHARK</div>
-                        </div>
-                    </div>
+                <div class="carousel-item" data-target="artboard-copy-5">
+                    <img src="ArboarYRecursos/Recurso 7.png" alt="Recurso 7">
                 </div>
-            </div>
-
-            <!-- Controles del carrusel -->
-            <button class="carousel-btn prev-btn" id="prevBtn">‹</button>
-            <button class="carousel-btn next-btn" id="nextBtn">›</button>
-            
-            <!-- Indicadores -->
-            <div class="carousel-indicators">
-                <span class="indicator active" data-slide="0"></span>
-                <span class="indicator" data-slide="1"></span>
-                <span class="indicator" data-slide="2"></span>
-                <span class="indicator" data-slide="3"></span>
+                <div class="carousel-item" data-target="artboard-copy-2">
+                    <img src="ArboarYRecursos/Recurso 8.png" alt="Recurso 8">
+                </div>
+                <!-- Duplicados para scroll infinito -->
+                <div class="carousel-item" data-target="artboard-copy-6">
+                    <img src="ArboarYRecursos/Recurso 2.png" alt="Recurso 2">
+                </div>
+                <div class="carousel-item" data-target="artboard-copy-4">
+                    <img src="ArboarYRecursos/Recurso 3.png" alt="Recurso 3">
+                </div>
+                <div class="carousel-item" data-target="artboard-copy">
+                    <img src="ArboarYRecursos/Recurso 6.png" alt="Recurso 6">
+                </div>
             </div>
         </div>
-    </div>
+        
+        <!-- Botón "¿Dónde canjear tu pulsera?" - área clickeable -->
+        <div class="pulsera-button-area" id="pulseraButton" data-target="artboard-copy-3"></div>
+    </section>
+
+    <!-- Artboard 1 copy - Tanqueray No. Ten -->
+    <section id="artboard-copy" class="artboard">
+        <img src="ArboarYRecursos/Artboard 1 copy.png" alt="Artboard 1 copy" class="artboard-bg">
+    </section>
+
+    <!-- Artboard 1 copy 2 - Tanqueray London Dry -->
+    <section id="artboard-copy-2" class="artboard">
+        <img src="ArboarYRecursos/Artboard 1 copy 2.png" alt="Artboard 1 copy 2" class="artboard-bg">
+    </section>
+
+    <!-- Artboard 1 copy 3 - Dónde canjear pulsera -->
+    <section id="artboard-copy-3" class="artboard">
+        <img src="ArboarYRecursos/Artboard 1 copy 3.png" alt="Artboard 1 copy 3" class="artboard-bg">
+    </section>
+
+    <!-- Artboard 1 copy 4 - Tanqueray 0.0 -->
+    <section id="artboard-copy-4" class="artboard">
+        <img src="ArboarYRecursos/Artboard 1 copy 4.png" alt="Artboard 1 copy 4" class="artboard-bg">
+    </section>
+
+    <!-- Artboard 1 copy 5 - Tanqueray Sevilla -->
+    <section id="artboard-copy-5" class="artboard">
+        <img src="ArboarYRecursos/Artboard 1 copy 5.png" alt="Artboard 1 copy 5" class="artboard-bg">
+    </section>
+
+    <!-- Artboard 1 copy 6 - Tanqueray Rangpur -->
+    <section id="artboard-copy-6" class="artboard">
+        <img src="ArboarYRecursos/Artboard 1 copy 6.png" alt="Artboard 1 copy 6" class="artboard-bg">
+    </section>
 
     <script src="script.js"></script>
 </body>
 </html>
+
