@@ -4,21 +4,29 @@
     box-sizing: border-box;
 }
 
-html, body {
+html {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(17, 17, 17);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body {
     width: 820px;
     height: 1180px;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    position: fixed;
+    position: relative;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     touch-action: none;
-}
-
-body {
     background-color: rgb(17, 17, 17);
-    position: relative;
 }
 
 .artboard {
@@ -29,7 +37,7 @@ body {
     top: 0;
     left: 0;
     overflow: hidden;
-    background-color: rgb(17, 17, 17);
+    background-color:#f0efef;
 }
 
 .artboard.active {
