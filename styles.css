@@ -65,30 +65,31 @@ body {
 }
 
 /* Botones de navegación del carrusel (invisibles sobre las flechas) */
-.carousel-nav-button {
+#artboard1 .carousel-nav-button {
     position: absolute;
-    top: 50%;
+    top: 723px;
     transform: translateY(-50%);
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     background: transparent;
     border: none;
     cursor: pointer;
-    z-index: 20;
+    z-index: 1000;
     -webkit-tap-highlight-color: transparent;
     opacity: 0;
+    display: block;
 }
 
-.carousel-nav-left {
-    left: -80px;
+#artboard1 .carousel-nav-left {
+    left: 20px;
 }
 
-.carousel-nav-right {
-    right: -80px;
+#artboard1 .carousel-nav-right {
+    right: 20px;
 }
 
 .carousel-nav-button:active {
-    opacity: 0.3;
+    opacity: 0;
 }
 
 .carousel-track {
@@ -131,18 +132,33 @@ body {
 /* Botón de pulsera - área clickeable invisible */
 .pulsera-button-area {
     position: absolute;
-    bottom: 50px;
+    bottom: 117px;
     left: 50%;
     transform: translateX(-50%);
-    width: 700px;
-    height: 100px;
+    width: 650px;
+    height: 80px;
+    background: transparent;
+    border: none;
     z-index: 10;
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
+    opacity: 0;
 }
 
-.pulsera-button-area:active {
-    opacity: 0.7;
+.pulsera-button-area::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0);
+    transition: background 0.2s ease;
+    pointer-events: none;
+}
+
+.pulsera-button-area:active::before {
+    background: rgba(0, 0, 0, 0.3);
 }
 
 /* Botón de volver al inicio */
