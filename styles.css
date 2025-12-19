@@ -5,7 +5,6 @@
 }
 
 html {
-    
     margin: 0;
     padding: 0;
     background-color: rgb(17, 17, 17);
@@ -67,7 +66,7 @@ body {
     left: 50%;
     transform: translateX(-50%);
     overflow: hidden;
-    touch-action: pan-y;
+    touch-action: pan-x pan-y; /* Permitir pan horizontal y vertical */
     z-index: 10;
 }
 
@@ -120,6 +119,8 @@ body {
     -webkit-user-select: none;
     -webkit-tap-highlight-color: transparent;
     padding: 0 10px;
+    touch-action: manipulation; /* Mejorar respuesta táctil */
+    -webkit-touch-callout: none;
 }
 
 .carousel-item:active {
